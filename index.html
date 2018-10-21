@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>聚合频道</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <!--<link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.css">-->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="css/general.css">
+
+    <script src="jquery/jquery-3.1.1.js" type="text/javascript"></script>
+    <script src="jquery/jquerysession.js" type="text/javascript"></script>
+    <script src="bootstrap/js/bootstrap.js" type="text/javascript"></script>
+    <script src="js/init.js" type="text/javascript"></script>
+    <script src="js/index.js" type="text/javascript"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-inverse" style="margin-bottom: 0">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">
+                <img src="image/logo_no_text_small.png" style="margin-top: -2mm">
+                <div style="margin-left: 10mm; margin-top: -7mm;">聚合频道</div>
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="top-right">
+        </div>
+    </div>
+</nav>
+
+</div>
+<div style="margin-left: 9mm; margin-top: 12mm">
+    <div class="hero-unit">
+        <h1>热点新闻<small style="margin-left: 4mm;margin-top: 5mm" id="date_rec">
+            <script>
+                $("#date_rec").html(get_date());
+            </script>
+        </small></h1>
+        <div id="recommend" style="width: 90%; margin-top: 5mm">
+            <div class="row-fluid">
+                <ul class="thumbnails">
+                    <li class="span4">
+                        <div class="thumbnail">
+                            <img id="rec1_image" src="" onload="set_size(this, 'rec')" style="width: 100%;">
+                            <div class="caption">
+                                <h3 align="center" id="rec1_title"></h3>
+                                <p id="rec1_content" style="max-height: 200px; overflow-y: scroll">
+                                </p>
+                                <blockquote>
+                                    <small><cite id="rec1_cite"></cite></small>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="span4">
+                        <div class="thumbnail">
+                            <img src="" onload="set_size(this, 'rec')" id="rec2_image" style="width: 100%;">
+                            <div class="caption">
+                                <h3 align="center" id="rec2_title"></h3>
+                                <p id="rec2_content" style="max-height: 200px; overflow-y: scroll">
+                                </p>
+                                <blockquote>
+                                    <small><cite id="rec2_cite"></cite></small>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="span4">
+                        <div class="thumbnail">
+                            <img src="" onload="set_size(this, 'rec')" id="rec3_image" style="width: 100%;">
+                            <div class="caption">
+                                <h3 align="center" id="rec3_title"></h3>
+                                <p id="rec3_content" style="max-height: 200px; overflow-y: scroll">
+                                </p>
+                                <blockquote>
+                                    <small><cite id="rec3_cite"></cite></small>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <script src="js/recommend_news.js" type="text/javascript"></script>
+    </div>
+</div>
+
+<div class="modal fade" id="single_news">
+    <div class="modal-dialog" role="document" style="width: 40%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 align="center" class="modal-title" >
+                    <strong id="single_title"></strong>
+                </h4><br>
+                <p align="right"><small id="single_date"></small></p>
+            </div>
+            <div class="modal-body" style="padding-left: 60px;padding-right: 60px;
+             padding-top: 20px; width: 100%; max-height: 800px; overflow-y: scroll">
+                <p id="single_content"></p>
+                <blockquote>
+                    <p align="right"><small><cite id="single_cite">
+                    </cite></small></p>
+                </blockquote>
+            </div>
+            <div class="modal-footer">
+                <a class="btn" data-dismiss="modal">退出</a>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="login">
+    <div class="modal-dialog" role="document" style="width: 500px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">登录</h4>
+            </div>
+            <div class="modal-body" style="padding-left: 60px; padding-right: 60px; padding-top: 20px;">
+                <div>
+                    <label>用户名</label>
+                    <input id="login_username"
+                           style="margin-left: 4mm;width: 70%" placeholder="请输入注册时的电子邮箱或手机号码">
+                </div>
+	
+                <div style="margin-top: 4mm">
+                    <label>密码</label>
+                    <input type="password" id="login_pwd"
+                           style="margin-left: 8mm;width: 70%">
+                </div>
+			
+			
+            </div>
+            <div class="modal-footer">
+                <a onclick="login()" class="btn btn-primary" data-dismiss="modal">确认登录信息</a>
+                <a onclick="cancel_login()" class="btn btn-danger" data-dismiss="modal">返回</a>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="logout">
+    <div class="modal-dialog" role="document" style="width: 500px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">注销</h4>
+            </div>
+            <div class="modal-body" style="padding-left: 60px; padding-right: 60px; padding-top: 20px;">
+                <p style="align-content: center"><strong>确认注销？</strong></p>
+            </div>
+            <div class="modal-footer">
+                <a onclick="logout()" class="btn btn-primary" data-dismiss="modal">确认注销</a>
+                <a class="btn btn-danger" data-dismiss="modal">返回</a>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="register">
+    <div class="modal-dialog" role="document" style="width: 500px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true" onclick="cancel_register()">&times;</span></button>
+                <h4 class="modal-title">注册</h4>
+            </div>
+            <div class="modal-body" style="padding-left: 60px; padding-right: 60px; padding-top: 20px;">
+				<div style="margin-top: 4mm">
+                    <label>用户名</label>
+					<input id="register_username"
+                           style="margin-left: 12mm;width: 70%" placeholder="请输入有效的电子邮箱或手机号码">						   
+                </div>
+				
+                <div style="margin-top: 4mm">
+                    <label>密码</label>
+                    <input type="password" id="register_pwd"
+                           style="margin-left: 16mm;width: 70%" placeholder="6位以上的数字与字母的组合">
+                </div>
+			
+				
+                <div style="margin-top: 4mm">
+                    <label>确认密码</label>
+                    <input type="password" id="register_pwd_confirm"
+                           style="margin-left: 8mm;width: 70%" placeholder="再输入一次密码">
+                    <div id="register_pwd_div"></div>
+                </div>				
+				
+                <div style="margin-top: 4mm">
+                    <label>昵称</label>
+                    <input type="text" id="register_email"
+                           style="margin-left: 16mm;width: 70%" placeholder="请输入自己喜欢的昵称">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a onclick="register()" class="btn btn-primary" data-dismiss="modal">确认注册信息</a>
+                <a onclick="cancel_register()" class="btn btn-danger" data-dismiss="modal">返回</a>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+<div class="modal fade" id="search_news">
+    <div class="modal-dialog" role="document" style="width: 500px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">新闻搜索</h4>
+            </div>
+            <div class="modal-body" style="padding-left: 60px; 
+            padding-right: 60px; padding-top: 20px; width: 200%">
+                <input id="search_title" type="text" class="search-query" placeholder="输入您想查找的关键词">
+            </div>
+            <div class="modal-footer">
+                <a onclick="search_news()" class="btn btn-primary" data-dismiss="modal">确定</a>
+                <a onclick="cancel_search_news()" class="btn btn-danger" data-dismiss="modal">取消</a>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<div style="margin-left: 9mm; margin-top: 15mm">
+    <div class="hero-unit">
+        <h1>新闻分类<small style="margin-left: 4mm;" id="date_top">
+            <script>
+                $("#date_top").html(get_date());
+            </script>
+        </small></h1>
+    </div>
+    <div id="carousel-example-generic" class="carousel slide"
+         data-ride="carousel" style="width: 90%; margin-left: 7mm; margin-top: 5mm">
+	 <font color="grey">
+	 <h3>&nbsp;&nbsp;时事政治&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;科教文卫&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;城建公交&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;经济热点&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;政法公安&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;社会民生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;娱乐八卦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;体坛咨询
+	 <h3>&nbsp;&nbsp;国际新闻&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;军事武器&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;历史文化&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;健康养生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;生活常识&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;天气预报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;走遍天下&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;广告创意
+	 </font>
+	  <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
+
+<div style="margin-left: -9mm; margin-top: 15mm">
+    <div class="hero-unit">
+        <h1>新闻网站<small style="margin-left: 4mm;" id="date_top">
+            <script>
+                $("#date_top").html(get_date());
+            </script>
+        </small></h1>
+    </div>
+    <div id="carousel-example-generic" class="carousel slide"
+         data-ride="carousel" style="width: 90%; margin-left: 7mm; margin-top: 5mm">
+	 <font color="grey">
+	 <h3>&nbsp;&nbsp;新浪新闻&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;网易新闻&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;搜狐新闻&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;腾讯新闻&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国新闻&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;央视新闻&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;凤凰资讯&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;热点资讯
+     </font> 
+	  <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
+			
+<div class="modal fade" id="inform_msg">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" align="center">提示信息</h4>
+            </div>
+            <div class="modal-body">
+                <p id="inform"></p>
+            </div>
+            <div class="modal-footer">
+                <a onclick="end_inform_msg()" class="btn btn-danger" data-dismiss="modal">知道了</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>
